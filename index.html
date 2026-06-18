@@ -8,47 +8,36 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #e8a7b5; /* Màu nền hồng của bạn */
+            background-color: #e8a7b5; /* Màu nền hồng gốc */
             margin: 0;
             padding: 0;
         }
-        /* Phần chỉnh thêm cho logo nằm ở trên cùng */
+        /* Căn chỉnh khoảng cách cho phần logo ở trên cùng */
         .header-logo {
-            padding: 20px 0 10px 0;
+            padding: 30px 0 20px 0;
         }
         .logo {
-            max-width: 150px;
+            max-width: 140px;
             height: auto;
-            border-radius: 10px;
-        }
-        .title-container {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .subtitle {
-            color: white;
-            font-size: 14px;
-            margin-bottom: 20px;
+            border-radius: 12px;
         }
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            padding: 10px;
+            gap: 12px;
+            padding: 0 12px 20px 12px;
         }
-        /* Khung màu trắng bo góc của từng bó hoa */
+        /* Khung màu trắng bo góc chia 2 cột */
         .flower-item {
             background-color: white;
             border-radius: 20px;
             padding: 0 0 15px 0;
-            width: 45%; /* Chia làm 2 cột giống hình mẫu */
+            width: 46%; /* Chia 2 cột hoàn hảo */
             box-sizing: border-box;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         .flower-item img {
             width: 100%;
@@ -59,43 +48,40 @@
             font-size: 14px;
             font-weight: bold;
             color: #000;
-            margin: 10px 5px 2px 5px;
+            margin: 12px 5px 3px 5px;
         }
         .flower-subname {
             font-size: 11px;
             color: #666;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
         .flower-price {
             font-size: 16px;
             color: #e9527b;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
-        /* Nút đặt hàng màu hồng */
+        /* Nút đặt hàng màu hồng đậm */
         .btn-order {
             background-color: #e9527b;
             color: white;
             border: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 11px;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. THÊM LOGO CỦA BẠN VÀO ĐÂY -->
+    <!-- 1. CHỈ GIỮ LẠI LOGO Ở TRÊN CÙNG -->
     <div class="header-logo">
         <img src="Logo.jpg.PNG" alt="Logo" class="logo">
     </div>
 
-    <!-- 2. TIÊU ĐỀ TIẾNG TRUNG VÀ TIẾNG VIỆT CŨ -->
-    <div class="title-container">🌸 Tiệm Hoa Khô 🌸</div>
-    <div class="subtitle">乾燥花專賣店</div>
-
-    <!-- 3. DANH SÁCH 7 BÓ HOA (ĐÚNG CHỮ VÀ GIÁ TIỀN CŨ) -->
+    <!-- 2. DANH SÁCH CÁC BÓ HOA BÊN DƯỚI (ĐÃ BỎ HOÀN TOÀN CHỮ TIÊU ĐỀ) -->
     <div class="gallery">
 
         <!-- Bó hoa 1 -->
@@ -131,33 +117,6 @@
             <div class="flower-name">Bó hoa khô cổ điển</div>
             <div class="flower-subname">復古乾燥花束</div>
             <div class="flower-price">200.000元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
-
-        <!-- Bó hoa 5 -->
-        <div class="flower-item">
-            <img src="05.jpg.JPG" alt="Hoa 5">
-            <div class="flower-name">Bó hoa tiếp theo</div>
-            <div class="flower-subname">向日葵花束</div>
-            <div class="flower-price">280元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
-
-        <!-- Bó hoa 6 -->
-        <div class="flower-item">
-            <img src="06.jpg.JPG" alt="Hoa 6">
-            <div class="flower-name">Bó hoa tiếp theo</div>
-            <div class="flower-subname">繡球花束</div>
-            <div class="flower-price">400元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
-
-        <!-- Bó hoa 7 -->
-        <div class="flower-item">
-            <img src="07.jpg.JPG" alt="Hoa 7">
-            <div class="flower-name">Bó hoa tiếp theo</div>
-            <div class="flower-subname">鬱金香花束</div>
-            <div class="flower-price">320元</div>
             <button class="btn-order">Đặt hàng / 下單</button>
         </div>
 
