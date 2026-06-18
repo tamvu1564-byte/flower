@@ -8,29 +8,29 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #e8a7b5; /* Màu nền hồng gốc */
+            background-color: #e8a7b5; /* Màu nền hồng gốc bên dưới */
             margin: 0;
             padding: 0;
         }
-        /* Style giúp bo tròn logo như một tấm card */
+        /* Tạo một dải nền màu kem sáng ở trên cùng để nuốt trọn khung logo */
         .header-logo {
-            padding: 20px 0 10px 0;
+            background-color: #f7eedf; /* Màu kem trùng khớp màu nền ảnh logo */
+            padding: 10px 0;
+            width: 100%;
         }
         .logo {
             width: 90%; 
-            max-width: 400px;
+            max-width: 450px;
             height: auto;
             display: block;
             margin: 0 auto;
-            border-radius: 30px; /* Bo góc tròn siêu mượt */
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* Tạo bóng đổ nhẹ cho sang */
         }
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 12px;
-            padding: 20px 12px;
+            padding: 25px 12px;
         }
         .flower-item {
             background-color: white;
@@ -78,7 +78,7 @@
 </head>
 <body>
 
-    <!-- Logo bo góc mềm mại -->
+    <!-- Logo chìm vào nền kem phía trên -->
     <div class="header-logo">
         <img src="Logo.jpg.PNG" alt="Logo" class="logo">
     </div>
