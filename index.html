@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tiệm Hoa Khô / 乾燥花店</title>
 
+<!-- 🌸 VỊ TRÍ 1: THÊM LOGO TRÊN TAB TRÌNH DUYỆT (FAVICON) -->
+<link rel="icon" type="image/png" href="logo.png">
+
 <style>
 body{
     margin:0;
@@ -19,6 +22,19 @@ header{
     padding:18px;
     font-size:20px;
     font-weight:bold;
+    /* Thêm các dòng dưới để căn chỉnh logo nằm giữa cùng chữ */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Kiểu dáng cho logo ở phần đầu trang */
+.header-logo {
+    width: 60px; /* Bạn có thể tăng giảm số này để logo to hay nhỏ */
+    height: auto;
+    border-radius: 50%; /* Làm tròn logo nếu muốn */
 }
 
 .sub{font-size:13px;}
@@ -75,8 +91,13 @@ footer{
 <body>
 
 <header>
-🌸 Tiệm Hoa Khô 🌸<br>
-<span class="sub">乾燥花專賣店</span>
+<!-- 🌸 VỊ TRÍ 2: THÊM LOGO VÀO ĐẦU TRANG WEB -->
+<img src="logo.png" alt="Logo" class="header-logo">
+
+<div>
+    🌸 Tiệm Hoa Khô 🌸<br>
+    <span class="sub">乾燥花專賣店</span>
+</div>
 </header>
 
 <div class="container">
