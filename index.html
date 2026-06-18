@@ -12,19 +12,18 @@
             margin: 0;
             padding: 0;
         }
-        /* Phần căn chỉnh cho logo tràn màn hình */
+        /* Style giúp bo tròn logo như một tấm card */
         .header-logo {
-            padding: 0; /* Bỏ khoảng trống phía trên */
-            margin: 0;
-            width: 100%;
-            overflow: hidden;
+            padding: 20px 0 10px 0;
         }
         .logo {
-            width: 90%; /* Logo chiếm 90% chiều rộng màn hình để tràn lề đẹp mắt */
-            max-width: 500px; /* Giới hạn không bị quá to trên màn hình lớn */
+            width: 90%; 
+            max-width: 400px;
             height: auto;
             display: block;
-            margin: 0 auto; /* Căn giữa */
+            margin: 0 auto;
+            border-radius: 30px; /* Bo góc tròn siêu mượt */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* Tạo bóng đổ nhẹ cho sang */
         }
         .gallery {
             display: flex;
@@ -33,12 +32,11 @@
             gap: 12px;
             padding: 20px 12px;
         }
-        /* Khung màu trắng bo góc chia 2 cột */
         .flower-item {
             background-color: white;
             border-radius: 20px;
             padding: 0 0 15px 0;
-            width: 46%; /* Chia 2 cột hoàn hảo */
+            width: 46%; 
             box-sizing: border-box;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -66,7 +64,6 @@
             font-weight: bold;
             margin-bottom: 12px;
         }
-        /* Nút đặt hàng màu hồng đậm */
         .btn-order {
             background-color: #e9527b;
             color: white;
@@ -81,15 +78,13 @@
 </head>
 <body>
 
-    <!-- Logo tràn rộng màn hình -->
+    <!-- Logo bo góc mềm mại -->
     <div class="header-logo">
         <img src="Logo.jpg.PNG" alt="Logo" class="logo">
     </div>
 
-    <!-- Danh sách các bó hoa bên dưới -->
+    <!-- Danh sách đầy đủ 7 bó hoa -->
     <div class="gallery">
-
-        <!-- Bó hoa 1 -->
         <div class="flower-item">
             <img src="01.jpg.JPG" alt="Hoa 1">
             <div class="flower-name">Bó hoa hồng đỏ tươi</div>
@@ -97,8 +92,6 @@
             <div class="flower-price">300元</div>
             <button class="btn-order">Đặt hàng / 下單</button>
         </div>
-
-        <!-- Bó hoa 2 -->
         <div class="flower-item">
             <img src="02.jpg.JPG" alt="Hoa 2">
             <div class="flower-name">Bó hoa baby trắng</div>
@@ -106,8 +99,6 @@
             <div class="flower-price">450元</div>
             <button class="btn-order">Đặt hàng / 下單</button>
         </div>
-
-        <!-- Bó hoa 3 -->
         <div class="flower-item">
             <img src="03.jpg.JPG" alt="Hoa 3">
             <div class="flower-name">Bó hoa lavender tím</div>
@@ -115,8 +106,6 @@
             <div class="flower-price">350元</div>
             <button class="btn-order">Đặt hàng / 下單</button>
         </div>
-
-        <!-- Bó hoa 4 -->
         <div class="flower-item">
             <img src="04.jpg.JPG" alt="Hoa 4">
             <div class="flower-name">Bó hoa khô cổ điển</div>
@@ -124,7 +113,27 @@
             <div class="flower-price">200.000元</div>
             <button class="btn-order">Đặt hàng / 下單</button>
         </div>
-
+        <div class="flower-item">
+            <img src="05.jpg.JPG" alt="Hoa 5">
+            <div class="flower-name">Bó hoa hướng dương</div>
+            <div class="flower-subname">向日葵花束</div>
+            <div class="flower-price">280元</div>
+            <button class="btn-order">Đặt hàng / 下單</button>
+        </div>
+        <div class="flower-item">
+            <img src="06.jpg.JPG" alt="Hoa 6">
+            <div class="flower-name">Bó hoa cẩm tú cầu</div>
+            <div class="flower-subname">繡球花束</div>
+            <div class="flower-price">400元</div>
+            <button class="btn-order">Đặt hàng / 下單</button>
+        </div>
+        <div class="flower-item">
+            <img src="07.jpg.JPG" alt="Hoa 7">
+            <div class="flower-name">Bó hoa tulip mộng mơ</div>
+            <div class="flower-subname">鬱金香花束</div>
+            <div class="flower-price">320元</div>
+            <button class="btn-order">Đặt hàng / 下單</button>
+        </div>
     </div>
 
 </body>
