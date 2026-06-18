@@ -12,21 +12,26 @@
             margin: 0;
             padding: 0;
         }
-        /* Căn chỉnh khoảng cách cho phần logo ở trên cùng */
+        /* Phần căn chỉnh cho logo tràn màn hình */
         .header-logo {
-            padding: 30px 0 20px 0;
+            padding: 0; /* Bỏ khoảng trống phía trên */
+            margin: 0;
+            width: 100%;
+            overflow: hidden;
         }
         .logo {
-            max-width: 140px;
+            width: 90%; /* Logo chiếm 90% chiều rộng màn hình để tràn lề đẹp mắt */
+            max-width: 500px; /* Giới hạn không bị quá to trên màn hình lớn */
             height: auto;
-            border-radius: 12px;
+            display: block;
+            margin: 0 auto; /* Căn giữa */
         }
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 12px;
-            padding: 0 12px 20px 12px;
+            padding: 20px 12px;
         }
         /* Khung màu trắng bo góc chia 2 cột */
         .flower-item {
@@ -76,12 +81,12 @@
 </head>
 <body>
 
-    <!-- 1. CHỈ GIỮ LẠI LOGO Ở TRÊN CÙNG -->
+    <!-- Logo tràn rộng màn hình -->
     <div class="header-logo">
         <img src="Logo.jpg.PNG" alt="Logo" class="logo">
     </div>
 
-    <!-- 2. DANH SÁCH CÁC BÓ HOA BÊN DƯỚI (ĐÃ BỎ HOÀN TOÀN CHỮ TIÊU ĐỀ) -->
+    <!-- Danh sách các bó hoa bên dưới -->
     <div class="gallery">
 
         <!-- Bó hoa 1 -->
