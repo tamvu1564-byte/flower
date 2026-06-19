@@ -1,140 +1,47 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiệm Hoa Khô</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #e8a7b5; /* Màu nền hồng gốc bên dưới */
-            margin: 0;
-            padding: 0;
-        }
-        /* Tạo một dải nền màu kem sáng ở trên cùng để nuốt trọn khung logo */
-        .header-logo {
-            background-color: #f7eedf; /* Màu kem trùng khớp màu nền ảnh logo */
-            padding: 10px 0;
-            width: 100%;
-        }
-        .logo {
-            width: 90%; 
-            max-width: 450px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            padding: 25px 12px;
-        }
-        .flower-item {
-            background-color: white;
-            border-radius: 20px;
-            padding: 0 0 15px 0;
-            width: 46%; 
-            box-sizing: border-box;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 5px;
-        }
-        .flower-item img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
-        .flower-name {
-            font-size: 14px;
-            font-weight: bold;
-            color: #000;
-            margin: 12px 5px 3px 5px;
-        }
-        .flower-subname {
-            font-size: 11px;
-            color: #666;
-            margin-bottom: 6px;
-        }
-        .flower-price {
-            font-size: 16px;
-            color: #e9527b;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-        .btn-order {
-            background-color: #e9527b;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
+<!-- BƯỚC 1: Cập nhật nút bấm ở các block sản phẩm của bạn -->
+<!-- Ví dụ cho Bó hoa hồng đỏ tươi -->
+<div class="product-card">
+    <h3>Bó hoa hồng đỏ tươi</h3>
+    <p>300元</p>
+    <!-- Thêm sự kiện onclick vào nút bấm để truyền Tên và Giá hoa -->
+    <button class="btn-buy" onclick="themVaoGio('Bó hoa hồng đỏ tươi', 300)">Đặt hàng / 下單</button>
+</div>
 
-    <!-- Logo chìm vào nền kem phía trên -->
-    <div class="header-logo">
-        <img src="Logo.jpg.PNG" alt="Logo" class="logo">
+<!-- Ví dụ cho Bó hoa baby trắng -->
+<div class="product-card">
+    <h3>Bó hoa baby trắng</h3>
+    <p>450元</p>
+    <button class="btn-buy" onclick="themVaoGio('Bó hoa baby trắng', 450)">Đặt hàng / 下單</button>
+</div>
+
+
+<!-- BƯỚC 2: Dán cụm giao diện Đăng nhập & Giỏ hàng này vào dưới cùng của trang web -->
+
+<!-- Khu vực Đăng Nhập ở góc trên -->
+<div id="user-area" style="position: fixed; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000;">
+    <div id="login-form">
+        <input type="text" id="username" placeholder="Tên đăng nhập" style="width: 120px; padding: 4px;">
+        <button onclick="dangNhap()" style="background: #ff4d94; color: white; border: none; padding: 4px 8px; cursor: pointer; border-radius: 4px;">登入會員</button>
     </div>
-
-    <!-- Danh sách đầy đủ 7 bó hoa -->
-    <div class="gallery">
-        <div class="flower-item">
-            <img src="01.jpg.JPG" alt="Hoa 1">
-            <div class="flower-name">Bó hoa hồng đỏ tươi</div>
-            <div class="flower-subname">紅玫瑰花束</div>
-            <div class="flower-price">300元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
-        <div class="flower-item">
-            <img src="02.jpg.JPG" alt="Hoa 2">
-            <div class="flower-name">Bó hoa baby trắng</div>
-            <div class="flower-subname">滿天星花束</div>
-            <div class="flower-price">450元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
-        <div class="flower-item">
-            <img src="03.jpg.JPG" alt="Hoa 3">
-            <div class="flower-name">Bó hoa lavender tím</div>
-            <div class="flower-subname">薰衣草花束</div>
-            <div class="flower-price">350元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
-        <div class="flower-item">
-            <img src="04.jpg.JPG" alt="Hoa 4">
-            <div class="flower-name">Bó hoa khô cổ điển</div>
-            <div class="flower-subname">復古乾燥花束</div>
-            <div class="flower-price">200.000元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
-        <div class="flower-item">
-            <img src="05.jpg.JPG" alt="Hoa 5">
-            <div class="flower-name">Bó hoa hướng dương</div>
-            <div class="flower-subname">向日葵花束</div>
-            <div class="flower-price">280元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
-        <div class="flower-item">
-            <img src="06.jpg.JPG" alt="Hoa 6">
-            <div class="flower-name">Bó hoa cẩm tú cầu</div>
-            <div class="flower-subname">繡球花束</div>
-            <div class="flower-price">400元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
-        <div class="flower-item">
-            <img src="07.jpg.JPG" alt="Hoa 7">
-            <div class="flower-name">Bó hoa tulip mộng mơ</div>
-            <div class="flower-subname">鬱金香花束</div>
-            <div class="flower-price">320元</div>
-            <button class="btn-order">Đặt hàng / 下單</button>
-        </div>
+    <div id="user-logged" style="display: none;">
+        <span id="user-text">Chào bạn!</span>
+        <button onclick="dangXuat()" style="background: gray; color: white; border: none; padding: 2px 6px; cursor: pointer; border-radius: 4px; font-size: 11px;">Đăng xuất</button>
     </div>
+</div>
 
-</body>
-</html>
+<!-- Nút Giỏ Hàng nổi ở góc dưới màn hình -->
+<div id="cart-icon" onclick="batTatGioHang()" style="position: fixed; bottom: 20px; right: 20px; background: #ff4d94; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000;">
+    🛒 <span id="cart-count" style="position: absolute; top: 0; right: 0; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">0</span>
+</div>
+
+<!-- Bảng chi tiết Giỏ Hàng (Mặc định ẩn đi, bấm nút mới hiện) -->
+<div id="cart-modal" style="display: none; position: fixed; bottom: 90px; right: 20px; width: 300px; max-height: 400px; background: white; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); overflow-y: auto; padding: 15px; z-index: 1000;">
+    <h3 style="margin-top: 0; border-bottom: 2px solid #ff4d94; padding-bottom: 5px;">購物車 (Giỏ hàng)</h3>
+    <div id="cart-items">
+        <!-- Hoa được thêm sẽ tự động hiện ở đây -->
+    </div>
+    <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; font-weight: bold;">
+        Tổng tiền: <span id="cart-total" style="color: red;">0</span>元
+    </div>
+    <button onclick="thanhToanGiaLap()" style="width: 100%; background: #28a745; color: white; border: none; padding: 8px; margin-top: 10px; cursor: pointer; border-radius: 4px; font-weight: bold;">Xác nhận đặt hàng</button>
+</div>
