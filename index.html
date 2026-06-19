@@ -114,7 +114,7 @@
         <img src="Logo.jpg.PNG" alt="Logo" class="logo">
     </div>
 
-    <!-- Danh sách đầy đủ 7 bó hoa của bạn -->
+    <!-- Danh sách đầy đủ 7 bó hoa gốc của bạn -->
     <div class="gallery">
         <div class="flower-item">
             <img src="01.jpg.JPG" alt="Hoa 1">
@@ -141,8 +141,7 @@
             <img src="04.jpg.JPG" alt="Hoa 4">
             <div class="flower-name">Bó hoa khô cổ điển</div>
             <div class="flower-subname">復古乾燥花束</div>
-            <!-- Chuyển thành 200 để hệ thống cộng tiền chính xác -->
-            <div class="flower-price">200元</div> 
+            <div class="flower-price">200元</div>
             <button class="btn-order" onclick="themVaoGio('Bó hoa khô cổ điển', 200)">Đặt hàng / 下單</button>
         </div>
         <div class="flower-item">
@@ -186,7 +185,6 @@
 
     <!-- ĐOẠN SCRIPT XỬ LÝ CHỨC NĂNG CHẠY THẬT -->
     <script>
-        // Tự động tải lại giỏ hàng cũ từ bộ nhớ trình duyệt nếu có
         let gioHang = JSON.parse(localStorage.getItem('myCart')) || [];
 
         window.onload = function() {
@@ -194,7 +192,6 @@
             kiemTraDangNhapCu();
         };
 
-        // --- HÀM XỬ LÝ GIỎ HÀNG ---
         function themVaoGio(tenHoa, giaHoa) {
             gioHang.push({ ten: tenHoa, gia: giaHoa });
             localStorage.setItem('myCart', JSON.stringify(gioHang));
@@ -218,3 +215,9 @@
                     cartItemsDiv.innerHTML += `
                         <div class="cart-item-row">
                             <span>${item.ten}</span>
+                            <span>${item.gia}元 <button onclick="xoaKhoiGio(${index})" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold; margin-left:5px;">✕</button></span>
+                        </div>
+                    `;
+                });
+            }
+            
