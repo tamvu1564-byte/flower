@@ -1,106 +1,86 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dried Flower Shop</title>
+    <title>Tiệm Hoa Khô</title>
     <style>
-        /* CSS Giao diện gốc của bạn */
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffb6c1;
+            text-align: center;
+            background-color: #e8a7b5; /* Màu nền hồng gốc bên dưới */
             margin: 0;
             padding: 0;
+        }
+        /* Tạo một dải nền màu kem sáng ở trên cùng để nuốt trọn khung logo */
+        .header-logo {
+            background-color: #f7eedf; /* Màu kem trùng khớp màu nền ảnh logo */
+            padding: 10px 0;
+            width: 100%;
+        }
+        .logo {
+            width: 90%; 
+            max-width: 450px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .gallery {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            padding: 25px 12px;
         }
-        .header-card {
-            background-color: #fffaf0;
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-            padding: 30px 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .logo-img {
-            width: 150px;
-        }
-        .shop-title {
-            color: #8b5a42;
-            font-size: 32px;
-            margin: 10px 0 5px 0;
-            letter-spacing: 2px;
-        }
-        .shop-sub {
-            color: #a67c52;
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-        .container {
-            width: 100%;
-            max-width: 500px;
-            padding: 20px;
-            box-sizing: border-box;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        .product-card {
-            background: white;
+        .flower-item {
+            background-color: white;
             border-radius: 20px;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 0 0 15px 0;
+            width: 46%; 
+            box-sizing: border-box;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 5px;
         }
-        .product-img {
+        .flower-item img {
             width: 100%;
-            aspect-ratio: 1;
+            height: 160px;
             object-fit: cover;
-            border-radius: 15px;
         }
-        .product-name {
-            font-weight: bold;
+        .flower-name {
             font-size: 14px;
-            margin: 10px 0 2px 0;
+            font-weight: bold;
             color: #000;
+            margin: 12px 5px 3px 5px;
         }
-        .product-sub {
+        .flower-subname {
             font-size: 11px;
             color: #666;
-            margin: 0 0 8px 0;
+            margin-bottom: 6px;
         }
-        .product-price {
-            color: #ff4d94;
-            font-weight: bold;
+        .flower-price {
             font-size: 16px;
-            margin-bottom: 10px;
+            color: #e9527b;
+            font-weight: bold;
+            margin-bottom: 12px;
         }
-        .btn-buy {
-            background-color: #ff4d94;
+        .btn-order {
+            background-color: #e9527b;
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 10px;
             font-size: 12px;
-            width: 90%;
             font-weight: bold;
-            transition: 0.2s;
-        }
-        .btn-buy:hover {
-            background-color: #e0397b;
+            cursor: pointer;
         }
 
-        /* Thêm CSS cho phần đăng nhập và giỏ hàng mới */
+        /* ─── PHẦN MỚI THÊM: GIAO DIỆN ĐĂNG NHẬP & GIỎ HÀNG ─── */
         #user-area input {
             border: 1px solid #ccc;
             border-radius: 4px;
             outline: none;
+            font-size: 12px;
         }
         .cart-item-row {
             display: flex; 
@@ -110,16 +90,18 @@
             color: #333;
             border-bottom: 1px dashed #eee;
             padding-bottom: 4px;
+            text-align: left;
         }
     </style>
 </head>
 <body>
 
-    <!-- Khu vực Đăng Nhập Hội Viên Hội Viên (Mới thêm) -->
-    <div id="user-area" style="position: fixed; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); z-index: 1000; font-size: 13px;">
+    <!-- KHU VỰC ĐĂNG NHẬP HỘI VIÊN (Cố định góc trên bên phải) -->
+    <div id="user-area" style="position: fixed; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); z-index: 1000; font-size: 13px; text-align: right;">
         <div id="login-form">
-            <input type="text" id="username" placeholder="Tên đăng nhập" style="width: 100px; padding: 4px;">
-            <button onclick="dangNhap()" style="background: #ff4d94; color: white; border: none; padding: 4px 8px; cursor: pointer; border-radius: 4px; font-weight: bold;">登入會員</button>
+            <input type="text" id="username" placeholder="Tài khoản" style="width: 80px; padding: 4px; margin-bottom: 4px; display: block;">
+            <input type="password" id="password" placeholder="Mật khẩu" style="width: 80px; padding: 4px; margin-bottom: 4px; display: block;">
+            <button onclick="dangNhap()" style="background: #e9527b; color: white; border: none; padding: 4px 8px; cursor: pointer; border-radius: 4px; font-weight: bold; width: 100%;">登入會員</button>
         </div>
         <div id="user-logged" style="display: none; color: #333; font-weight: bold;">
             <span id="user-text">Hội viên</span>
@@ -127,47 +109,74 @@
         </div>
     </div>
 
-    <!-- Tiêu đề Shop gốc của bạn -->
-    <div class="header-card">
-        <div class="shop-title">乾燥花專賣店</div>
-        <div class="shop-sub">Dried Flower Shop</div>
+    <!-- Logo chìm vào nền kem phía trên -->
+    <div class="header-logo">
+        <img src="Logo.jpg.PNG" alt="Logo" class="logo">
     </div>
 
-    <!-- Danh sách sản phẩm (Đã gắn tính năng mua hàng) -->
-    <div class="container">
-        <!-- Sản phẩm 1 -->
-        <div class="product-card">
-            <!-- Bạn hãy thay link ảnh hoa hồng đỏ của bạn vào đây nếu có -->
-            <img src="https://unsplash.com" class="product-img" alt="Hoa hồng đỏ">
-            <div class="product-name">Bó hoa hồng đỏ tươi</div>
-            <div class="product-sub">紅玫瑰花束</div>
-            <div class="product-price">300元</div>
-            <!-- Thay đổi nút bấm cũ thành hàm dưới đây -->
-            <button class="btn-buy" onclick="themVaoGio('Bó hoa hồng đỏ tươi', 300)">Đặt hàng / 下單</button>
+    <!-- Danh sách đầy đủ 7 bó hoa của bạn -->
+    <div class="gallery">
+        <div class="flower-item">
+            <img src="01.jpg.JPG" alt="Hoa 1">
+            <div class="flower-name">Bó hoa hồng đỏ tươi</div>
+            <div class="flower-subname">紅玫瑰花束</div>
+            <div class="flower-price">300元</div>
+            <button class="btn-order" onclick="themVaoGio('Bó hoa hồng đỏ tươi', 300)">Đặt hàng / 下單</button>
         </div>
-
-        <!-- Sản phẩm 2 -->
-        <div class="product-card">
-            <!-- Bạn hãy thay link ảnh hoa baby trắng của bạn vào đây nếu có -->
-            <img src="https://unsplash.com" class="product-img" alt="Hoa baby trắng">
-            <div class="product-name">Bó hoa baby trắng</div>
-            <div class="product-sub">滿天星花束</div>
-            <div class="product-price">450元</div>
-            <button class="btn-buy" onclick="themVaoGio('Bó hoa baby trắng', 450)">Đặt hàng / 下單</button>
+        <div class="flower-item">
+            <img src="02.jpg.JPG" alt="Hoa 2">
+            <div class="flower-name">Bó hoa baby trắng</div>
+            <div class="flower-subname">滿天星花束</div>
+            <div class="flower-price">450元</div>
+            <button class="btn-order" onclick="themVaoGio('Bó hoa baby trắng', 450)">Đặt hàng / 下單</button>
+        </div>
+        <div class="flower-item">
+            <img src="03.jpg.JPG" alt="Hoa 3">
+            <div class="flower-name">Bó hoa lavender tím</div>
+            <div class="flower-subname">薰衣草花束</div>
+            <div class="flower-price">350元</div>
+            <button class="btn-order" onclick="themVaoGio('Bó hoa lavender tím', 350)">Đặt hàng / 下單</button>
+        </div>
+        <div class="flower-item">
+            <img src="04.jpg.JPG" alt="Hoa 4">
+            <div class="flower-name">Bó hoa khô cổ điển</div>
+            <div class="flower-subname">復古乾燥花束</div>
+            <!-- Chuyển thành 200 để hệ thống cộng tiền chính xác -->
+            <div class="flower-price">200元</div> 
+            <button class="btn-order" onclick="themVaoGio('Bó hoa khô cổ điển', 200)">Đặt hàng / 下單</button>
+        </div>
+        <div class="flower-item">
+            <img src="05.jpg.JPG" alt="Hoa 5">
+            <div class="flower-name">Bó hoa hướng dương</div>
+            <div class="flower-subname">向日葵花束</div>
+            <div class="flower-price">280元</div>
+            <button class="btn-order" onclick="themVaoGio('Bó hoa hướng dương', 280)">Đặt hàng / 下單</button>
+        </div>
+        <div class="flower-item">
+            <img src="06.jpg.JPG" alt="Hoa 6">
+            <div class="flower-name">Bó hoa cẩm tú cầu</div>
+            <div class="flower-subname">繡球花束</div>
+            <div class="flower-price">400元</div>
+            <button class="btn-order" onclick="themVaoGio('Bó hoa cẩm tú cầu', 400)">Đặt hàng / 下單</button>
+        </div>
+        <div class="flower-item">
+            <img src="07.jpg.JPG" alt="Hoa 7">
+            <div class="flower-name">Bó hoa tulip mộng mơ</div>
+            <div class="flower-subname">鬱金香花束</div>
+            <div class="flower-price">320元</div>
+            <button class="btn-order" onclick="themVaoGio('Bó hoa tulip mộng mơ', 320)">Đặt hàng / 下單</button>
         </div>
     </div>
 
-    <!-- Nút Giỏ Hàng nổi ở góc dưới (Mới thêm) -->
-    <div id="cart-icon" onclick="batTatGioHang()" style="position: fixed; bottom: 20px; right: 20px; background: #ff4d94; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.25); z-index: 1000;">
+    <!-- NÚT GIỎ HÀNG NỔI TRÒN (Góc dưới bên phải) -->
+    <div id="cart-icon" onclick="batTatGioHang()" style="position: fixed; bottom: 20px; right: 20px; background: #e9527b; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.25); z-index: 1000;">
         🛒<span id="cart-count" style="position: absolute; top: 0; right: 0; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 11px; font-weight: bold;">0</span>
     </div>
 
-    <!-- Bảng chi tiết Giỏ Hàng nổi (Mới thêm) -->
+    <!-- CỬA SỔ CHI TIẾT GIỎ HÀNG (Mở ra khi bấm nút tròn) -->
     <div id="cart-modal" style="display: none; position: fixed; bottom: 85px; right: 20px; width: 280px; max-height: 350px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); overflow-y: auto; padding: 15px; z-index: 1000;">
-        <h3 style="margin-top: 0; border-bottom: 2px solid #ff4d94; padding-bottom: 5px; color: #333; font-size: 16px;">購物車 (Giỏ hàng)</h3>
-        <div id="cart-items">
-            <!-- Hoa mua sẽ tự động xếp vào đây -->
-        </div>
+        <h3 style="margin-top: 0; border-bottom: 2px solid #e9527b; padding-bottom: 5px; color: #333; font-size: 16px; text-align: left;">購物車 (Giỏ hàng)</h3>
+        <div id="cart-items"></div>
         <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; font-weight: bold; color: #333; display: flex; justify-content: space-between;">
             <span>Tổng tiền:</span>
             <span><span id="cart-total" style="color: red;">0</span> 元</span>
@@ -175,8 +184,9 @@
         <button onclick="thanhToanGiaLap()" style="width: 100%; background: #28a745; color: white; border: none; padding: 8px; margin-top: 10px; cursor: pointer; border-radius: 6px; font-weight: bold; font-size: 13px;">Xác nhận đặt hàng</button>
     </div>
 
-    <!-- SCRIPT XỬ LÝ CHỨC NĂNG (Mới thêm) -->
+    <!-- ĐOẠN SCRIPT XỬ LÝ CHỨC NĂNG CHẠY THẬT -->
     <script>
+        // Tự động tải lại giỏ hàng cũ từ bộ nhớ trình duyệt nếu có
         let gioHang = JSON.parse(localStorage.getItem('myCart')) || [];
 
         window.onload = function() {
@@ -184,11 +194,12 @@
             kiemTraDangNhapCu();
         };
 
+        // --- HÀM XỬ LÝ GIỎ HÀNG ---
         function themVaoGio(tenHoa, giaHoa) {
             gioHang.push({ ten: tenHoa, gia: giaHoa });
             localStorage.setItem('myCart', JSON.stringify(gioHang));
             capNhatGiaoDienGioHang();
-            alert("Đã thêm [" + tenHoa + "] vào giỏ hàng thành công!");
+            alert("Đã thêm [" + tenHoa + "] vào giỏ hàng!");
         }
 
         function capNhatGiaoDienGioHang() {
@@ -200,48 +211,10 @@
             let tongTien = 0;
             
             if(gioHang.length === 0) {
-                cartItemsDiv.innerHTML = '<p style="color:#999; font-size:12px; text-align:center;">Giỏ hàng trống</p>';
+                cartItemsDiv.innerHTML = '<p style="color:#999; font-size:12px; text-align:center; margin: 10px 0;">Giỏ hàng trống</p>';
             } else {
                 gioHang.forEach((item, index) => {
                     tongTien += item.gia;
                     cartItemsDiv.innerHTML += `
                         <div class="cart-item-row">
                             <span>${item.ten}</span>
-                            <span>${item.gia}元 <button onclick="xoaKhoiGio(${index})" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold; margin-left:5px;">✕</button></span>
-                        </div>
-                    `;
-                });
-            }
-            
-            cartCountSpan.innerText = gioHang.length;
-            cartTotalSpan.innerText = tongTien;
-        }
-
-        function xoaKhoiGio(index) {
-            gioHang.splice(index, 1);
-            localStorage.setItem('myCart', JSON.stringify(gioHang));
-            capNhatGiaoDienGioHang();
-        }
-
-        function batTatGioHang() {
-            let modal = document.getElementById('cart-modal');
-            modal.style.display = (modal.style.display === 'none') ? 'block' : 'none';
-        }
-
-        function thanhToanGiaLap() {
-            if (gioHang.length === 0) {
-                alert("Giỏ hàng của bạn đang trống!");
-                return;
-            }
-            alert("Đặt hàng thành công! Đơn hàng của bạn đã được ghi nhận vào hệ thống giả lập.");
-            gioHang = [];
-            localStorage.removeItem('myCart');
-            capNhatGiaoDienGioHang();
-            batTatGioHang();
-        }
-
-        function dangNhap() {
-            let user = document.getElementById('username').value.trim();
-            if (user === "") {
-                alert("Vui lòng nhập tên tài khoản!");
-                return;
