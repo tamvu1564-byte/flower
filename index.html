@@ -1,47 +1,247 @@
-<!-- BƯỚC 1: Cập nhật nút bấm ở các block sản phẩm của bạn -->
-<!-- Ví dụ cho Bó hoa hồng đỏ tươi -->
-<div class="product-card">
-    <h3>Bó hoa hồng đỏ tươi</h3>
-    <p>300元</p>
-    <!-- Thêm sự kiện onclick vào nút bấm để truyền Tên và Giá hoa -->
-    <button class="btn-buy" onclick="themVaoGio('Bó hoa hồng đỏ tươi', 300)">Đặt hàng / 下單</button>
-</div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dried Flower Shop</title>
+    <style>
+        /* CSS Giao diện gốc của bạn */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffb6c1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header-card {
+            background-color: #fffaf0;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            padding: 30px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .logo-img {
+            width: 150px;
+        }
+        .shop-title {
+            color: #8b5a42;
+            font-size: 32px;
+            margin: 10px 0 5px 0;
+            letter-spacing: 2px;
+        }
+        .shop-sub {
+            color: #a67c52;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .product-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin: 10px 0 2px 0;
+            color: #000;
+        }
+        .product-sub {
+            font-size: 11px;
+            color: #666;
+            margin: 0 0 8px 0;
+        }
+        .product-price {
+            color: #ff4d94;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .btn-buy {
+            background-color: #ff4d94;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            width: 90%;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-buy:hover {
+            background-color: #e0397b;
+        }
 
-<!-- Ví dụ cho Bó hoa baby trắng -->
-<div class="product-card">
-    <h3>Bó hoa baby trắng</h3>
-    <p>450元</p>
-    <button class="btn-buy" onclick="themVaoGio('Bó hoa baby trắng', 450)">Đặt hàng / 下單</button>
-</div>
+        /* Thêm CSS cho phần đăng nhập và giỏ hàng mới */
+        #user-area input {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+        .cart-item-row {
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 8px; 
+            font-size: 14px;
+            color: #333;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
 
-
-<!-- BƯỚC 2: Dán cụm giao diện Đăng nhập & Giỏ hàng này vào dưới cùng của trang web -->
-
-<!-- Khu vực Đăng Nhập ở góc trên -->
-<div id="user-area" style="position: fixed; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000;">
-    <div id="login-form">
-        <input type="text" id="username" placeholder="Tên đăng nhập" style="width: 120px; padding: 4px;">
-        <button onclick="dangNhap()" style="background: #ff4d94; color: white; border: none; padding: 4px 8px; cursor: pointer; border-radius: 4px;">登入會員</button>
+    <!-- Khu vực Đăng Nhập Hội Viên Hội Viên (Mới thêm) -->
+    <div id="user-area" style="position: fixed; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); z-index: 1000; font-size: 13px;">
+        <div id="login-form">
+            <input type="text" id="username" placeholder="Tên đăng nhập" style="width: 100px; padding: 4px;">
+            <button onclick="dangNhap()" style="background: #ff4d94; color: white; border: none; padding: 4px 8px; cursor: pointer; border-radius: 4px; font-weight: bold;">登入會員</button>
+        </div>
+        <div id="user-logged" style="display: none; color: #333; font-weight: bold;">
+            <span id="user-text">Hội viên</span>
+            <button onclick="dangXuat()" style="background: #6c757d; color: white; border: none; padding: 2px 6px; cursor: pointer; border-radius: 4px; font-size: 10px; margin-left: 5px;">Đăng xuất</button>
+        </div>
     </div>
-    <div id="user-logged" style="display: none;">
-        <span id="user-text">Chào bạn!</span>
-        <button onclick="dangXuat()" style="background: gray; color: white; border: none; padding: 2px 6px; cursor: pointer; border-radius: 4px; font-size: 11px;">Đăng xuất</button>
-    </div>
-</div>
 
-<!-- Nút Giỏ Hàng nổi ở góc dưới màn hình -->
-<div id="cart-icon" onclick="batTatGioHang()" style="position: fixed; bottom: 20px; right: 20px; background: #ff4d94; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000;">
-    🛒 <span id="cart-count" style="position: absolute; top: 0; right: 0; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">0</span>
-</div>
+    <!-- Tiêu đề Shop gốc của bạn -->
+    <div class="header-card">
+        <div class="shop-title">乾燥花專賣店</div>
+        <div class="shop-sub">Dried Flower Shop</div>
+    </div>
 
-<!-- Bảng chi tiết Giỏ Hàng (Mặc định ẩn đi, bấm nút mới hiện) -->
-<div id="cart-modal" style="display: none; position: fixed; bottom: 90px; right: 20px; width: 300px; max-height: 400px; background: white; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); overflow-y: auto; padding: 15px; z-index: 1000;">
-    <h3 style="margin-top: 0; border-bottom: 2px solid #ff4d94; padding-bottom: 5px;">購物車 (Giỏ hàng)</h3>
-    <div id="cart-items">
-        <!-- Hoa được thêm sẽ tự động hiện ở đây -->
+    <!-- Danh sách sản phẩm (Đã gắn tính năng mua hàng) -->
+    <div class="container">
+        <!-- Sản phẩm 1 -->
+        <div class="product-card">
+            <!-- Bạn hãy thay link ảnh hoa hồng đỏ của bạn vào đây nếu có -->
+            <img src="https://unsplash.com" class="product-img" alt="Hoa hồng đỏ">
+            <div class="product-name">Bó hoa hồng đỏ tươi</div>
+            <div class="product-sub">紅玫瑰花束</div>
+            <div class="product-price">300元</div>
+            <!-- Thay đổi nút bấm cũ thành hàm dưới đây -->
+            <button class="btn-buy" onclick="themVaoGio('Bó hoa hồng đỏ tươi', 300)">Đặt hàng / 下單</button>
+        </div>
+
+        <!-- Sản phẩm 2 -->
+        <div class="product-card">
+            <!-- Bạn hãy thay link ảnh hoa baby trắng của bạn vào đây nếu có -->
+            <img src="https://unsplash.com" class="product-img" alt="Hoa baby trắng">
+            <div class="product-name">Bó hoa baby trắng</div>
+            <div class="product-sub">滿天星花束</div>
+            <div class="product-price">450元</div>
+            <button class="btn-buy" onclick="themVaoGio('Bó hoa baby trắng', 450)">Đặt hàng / 下單</button>
+        </div>
     </div>
-    <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; font-weight: bold;">
-        Tổng tiền: <span id="cart-total" style="color: red;">0</span>元
+
+    <!-- Nút Giỏ Hàng nổi ở góc dưới (Mới thêm) -->
+    <div id="cart-icon" onclick="batTatGioHang()" style="position: fixed; bottom: 20px; right: 20px; background: #ff4d94; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.25); z-index: 1000;">
+        🛒<span id="cart-count" style="position: absolute; top: 0; right: 0; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 11px; font-weight: bold;">0</span>
     </div>
-    <button onclick="thanhToanGiaLap()" style="width: 100%; background: #28a745; color: white; border: none; padding: 8px; margin-top: 10px; cursor: pointer; border-radius: 4px; font-weight: bold;">Xác nhận đặt hàng</button>
-</div>
+
+    <!-- Bảng chi tiết Giỏ Hàng nổi (Mới thêm) -->
+    <div id="cart-modal" style="display: none; position: fixed; bottom: 85px; right: 20px; width: 280px; max-height: 350px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); overflow-y: auto; padding: 15px; z-index: 1000;">
+        <h3 style="margin-top: 0; border-bottom: 2px solid #ff4d94; padding-bottom: 5px; color: #333; font-size: 16px;">購物車 (Giỏ hàng)</h3>
+        <div id="cart-items">
+            <!-- Hoa mua sẽ tự động xếp vào đây -->
+        </div>
+        <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; font-weight: bold; color: #333; display: flex; justify-content: space-between;">
+            <span>Tổng tiền:</span>
+            <span><span id="cart-total" style="color: red;">0</span> 元</span>
+        </div>
+        <button onclick="thanhToanGiaLap()" style="width: 100%; background: #28a745; color: white; border: none; padding: 8px; margin-top: 10px; cursor: pointer; border-radius: 6px; font-weight: bold; font-size: 13px;">Xác nhận đặt hàng</button>
+    </div>
+
+    <!-- SCRIPT XỬ LÝ CHỨC NĂNG (Mới thêm) -->
+    <script>
+        let gioHang = JSON.parse(localStorage.getItem('myCart')) || [];
+
+        window.onload = function() {
+            capNhatGiaoDienGioHang();
+            kiemTraDangNhapCu();
+        };
+
+        function themVaoGio(tenHoa, giaHoa) {
+            gioHang.push({ ten: tenHoa, gia: giaHoa });
+            localStorage.setItem('myCart', JSON.stringify(gioHang));
+            capNhatGiaoDienGioHang();
+            alert("Đã thêm [" + tenHoa + "] vào giỏ hàng thành công!");
+        }
+
+        function capNhatGiaoDienGioHang() {
+            let cartItemsDiv = document.getElementById('cart-items');
+            let cartCountSpan = document.getElementById('cart-count');
+            let cartTotalSpan = document.getElementById('cart-total');
+            
+            cartItemsDiv.innerHTML = '';
+            let tongTien = 0;
+            
+            if(gioHang.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="color:#999; font-size:12px; text-align:center;">Giỏ hàng trống</p>';
+            } else {
+                gioHang.forEach((item, index) => {
+                    tongTien += item.gia;
+                    cartItemsDiv.innerHTML += `
+                        <div class="cart-item-row">
+                            <span>${item.ten}</span>
+                            <span>${item.gia}元 <button onclick="xoaKhoiGio(${index})" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold; margin-left:5px;">✕</button></span>
+                        </div>
+                    `;
+                });
+            }
+            
+            cartCountSpan.innerText = gioHang.length;
+            cartTotalSpan.innerText = tongTien;
+        }
+
+        function xoaKhoiGio(index) {
+            gioHang.splice(index, 1);
+            localStorage.setItem('myCart', JSON.stringify(gioHang));
+            capNhatGiaoDienGioHang();
+        }
+
+        function batTatGioHang() {
+            let modal = document.getElementById('cart-modal');
+            modal.style.display = (modal.style.display === 'none') ? 'block' : 'none';
+        }
+
+        function thanhToanGiaLap() {
+            if (gioHang.length === 0) {
+                alert("Giỏ hàng của bạn đang trống!");
+                return;
+            }
+            alert("Đặt hàng thành công! Đơn hàng của bạn đã được ghi nhận vào hệ thống giả lập.");
+            gioHang = [];
+            localStorage.removeItem('myCart');
+            capNhatGiaoDienGioHang();
+            batTatGioHang();
+        }
+
+        function dangNhap() {
+            let user = document.getElementById('username').value.trim();
+            if (user === "") {
+                alert("Vui lòng nhập tên tài khoản!");
+                return;
