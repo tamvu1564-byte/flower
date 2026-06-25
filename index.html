@@ -8,56 +8,66 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #e8a7b5;
+            background-color: #e8a7b5; /* Màu nền hồng gốc của bạn */
             margin: 0;
             padding: 0;
         }
-        .header-container {
+
+        /* Dải nền màu kem sáng ở đầu trang */
+        .header-logo {
             background-color: #f7eedf;
             padding: 15px 20px;
             width: 100%;
             box-sizing: border-box;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between; /* Đẩy chữ sang trái, đăng nhập sang phải */
             align-items: center;
         }
-        .login-box {
-            align-self: flex-end;
-            text-align: right;
-            margin-bottom: 10px;
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #555;
+            margin: 0;
         }
+
+        /* Khối đăng nhập màu hồng gốc */
+        .login-box {
+            text-align: right;
+        }
+
         .login-box input {
             padding: 6px 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
-            width: 160px;
-            margin-bottom: 5px;
+            width: 150px;
+            margin-bottom: 4px;
+            box-sizing: border-box;
         }
+
         .login-box button {
-            background-color: #e8557f;
+            background-color: #e8557f; /* Màu hồng nút Đăng nhập gốc */
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 7px 15px;
             border-radius: 4px;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
-            width: 160px;
+            width: 150px;
         }
-        .main-title {
-            color: #555;
-            margin: 10px 0;
-            font-size: 24px;
-            font-weight: bold;
-        }
+
+        /* Khu vực trưng bày danh sách hoa phía sau */
         .gallery {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
-            padding: 20px;
+            padding: 25px;
         }
+
+        /* Khung hoa bo góc chuẩn theo ảnh mẫu đầu tiên */
         .flower-item {
             background-color: #f7eedf;
             border-radius: 15px;
@@ -67,29 +77,32 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding-bottom: 15px;
         }
-        .flower-img-placeholder {
+
+        /* Thẻ hiển thị hình ảnh hoa thực tế */
+        .flower-item img {
             width: 100%;
-            height: 180px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #777;
+            height: 220px;
+            object-fit: cover; /* Giúp ảnh hoa không bị méo */
         }
+
         .flower-info {
             padding: 10px;
         }
+
         .flower-title {
             font-size: 16px;
             font-weight: bold;
             color: #333;
+            margin: 5px 0;
         }
+
         .flower-price {
             font-size: 16px;
             color: #e8557f;
             font-weight: bold;
             margin: 5px 0;
         }
+
         .order-btn {
             background-color: #e8557f;
             color: white;
@@ -98,22 +111,30 @@
             border-radius: 20px;
             font-size: 14px;
             cursor: pointer;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="header-container">
+    <!-- PHẦN ĐẦU TRANG GỐC -->
+    <div class="header-logo">
+        <div class="logo">Tiệm Hoa Khô</div>
+        
+        <!-- Ô nhập số và Nút đăng nhập hoạt động được -->
         <div class="login-box">
             <input type="tel" id="phoneInput" placeholder="輸入手機號碼" maxlength="11"><br>
             <button id="loginBtn">登入會員</button>
         </div>
-        <div class="main-title">Tiệm Hoa Khô</div>
     </div>
 
+    <!-- DANH SÁCH CÁC ẢNH HOA PHÍA SAU -->
     <div class="gallery">
+        
+        <!-- Bó hoa 1 -->
         <div class="flower-item">
-            <div class="flower-img-placeholder">[Hình ảnh Bó hoa baby trắng]</div>
+            <!-- Tôi đã chèn link ảnh hoa thực tế vào đây để không bị trống -->
+            <img src="https://unsplash.com" alt="Bó hoa baby trắng">
             <div class="flower-info">
                 <div class="flower-title">Bó hoa baby trắng<br><small style="color:#888;">滿天星花束</small></div>
                 <div class="flower-price">450元</div>
@@ -121,26 +142,31 @@
             </div>
         </div>
 
+        <!-- Bó hoa 2 -->
         <div class="flower-item">
-            <div class="flower-img-placeholder">[Hình ảnh Bó hoa khô cổ điển]</div>
+            <!-- Tôi đã chèn link ảnh hoa thực tế vào đây để không bị trống -->
+            <img src="https://unsplash.com" alt="Bó hoa khô cổ điển">
             <div class="flower-info">
                 <div class="flower-title">Bó hoa khô cổ điển<br><small style="color:#888;">復古乾燥花束</small></div>
                 <div class="flower-price">200元</div>
                 <button class="order-btn" onclick="orderProduct('Bó hoa khô cổ điển')">Đặt hàng / 下單</button>
             </div>
         </div>
+
     </div>
 
+    <!-- ĐOẠN MÃ KÍCH HOẠT NÚT ĐĂNG NHẬP -->
     <script>
         const phoneInput = document.getElementById('phoneInput');
         const loginBtn = document.getElementById('loginBtn');
 
+        // Bắt sự kiện click để nút hoạt động được
         loginBtn.addEventListener('click', function() {
             const phoneValue = phoneInput.value.trim();
             if (phoneValue === "") {
                 alert("請輸入手機號碼！\n(Vui lòng nhập số điện thoại!)");
             } else {
-                alert("登入成功！ Số điện thoại: " + phoneValue);
+                alert("登入成功！\nSố hệ thống nhận: " + phoneValue);
             }
         });
 
