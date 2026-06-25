@@ -8,30 +8,27 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #e8a7b5; /* Màu nền hồng gốc của bạn */
+            background-color: #e8a7b5; /* Màu nền hồng gốc */
             margin: 0;
             padding: 0;
         }
 
-        /* Dải nền màu kem sáng ở đầu trang */
+        /* Thanh đầu trang màu kem chứa nút đăng nhập */
         .header-logo {
             background-color: #f7eedf;
             padding: 15px 20px;
             width: 100%;
             box-sizing: border-box;
             display: flex;
-            justify-content: space-between; /* Đẩy chữ sang trái, đăng nhập sang phải */
+            justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #555;
-            margin: 0;
+        .logo-img {
+            max-width: 150px;
+            height: auto;
         }
 
-        /* Khối đăng nhập màu hồng gốc */
         .login-box {
             text-align: right;
         }
@@ -47,7 +44,7 @@
         }
 
         .login-box button {
-            background-color: #e8557f; /* Màu hồng nút Đăng nhập gốc */
+            background-color: #e8557f; /* Màu hồng nút Đăng nhập */
             color: white;
             border: none;
             padding: 7px 15px;
@@ -58,7 +55,7 @@
             width: 150px;
         }
 
-        /* Khu vực trưng bày danh sách hoa phía sau */
+        /* Khu vực trưng bày danh sách hoa */
         .gallery {
             display: flex;
             flex-direction: column;
@@ -67,7 +64,7 @@
             padding: 25px;
         }
 
-        /* Khung hoa bo góc chuẩn theo ảnh mẫu đầu tiên */
+        /* Khung hoa bo góc chuẩn */
         .flower-item {
             background-color: #f7eedf;
             border-radius: 15px;
@@ -78,11 +75,10 @@
             padding-bottom: 15px;
         }
 
-        /* Thẻ hiển thị hình ảnh hoa thực tế */
         .flower-item img {
             width: 100%;
-            height: 220px;
-            object-fit: cover; /* Giúp ảnh hoa không bị méo */
+            height: 250px;
+            object-fit: cover;
         }
 
         .flower-info {
@@ -117,9 +113,10 @@
 </head>
 <body>
 
-    <!-- PHẦN ĐẦU TRANG GỐC -->
+    <!-- PHẦN ĐẦU TRANG -->
     <div class="header-logo">
-        <div class="logo">Tiệm Hoa Khô</div>
+        <!-- Chèn logo của bạn -->
+        <img src="Logo.jpg.PNG" alt="Logo" class="logo-img">
         
         <!-- Ô nhập số và Nút đăng nhập hoạt động được -->
         <div class="login-box">
@@ -128,13 +125,12 @@
         </div>
     </div>
 
-    <!-- DANH SÁCH CÁC ẢNH HOA PHÍA SAU -->
+    <!-- DANH SÁCH CÁC ẢNH HOA KHÔ -->
     <div class="gallery">
         
-        <!-- Bó hoa 1 -->
+        <!-- Hoa 1 -->
         <div class="flower-item">
-            <!-- Tôi đã chèn link ảnh hoa thực tế vào đây để không bị trống -->
-            <img src="https://unsplash.com" alt="Bó hoa baby trắng">
+            <img src="01.jpg.JPG" alt="Hoa 01">
             <div class="flower-info">
                 <div class="flower-title">Bó hoa baby trắng<br><small style="color:#888;">滿天星花束</small></div>
                 <div class="flower-price">450元</div>
@@ -142,10 +138,9 @@
             </div>
         </div>
 
-        <!-- Bó hoa 2 -->
+        <!-- Hoa 2 -->
         <div class="flower-item">
-            <!-- Tôi đã chèn link ảnh hoa thực tế vào đây để không bị trống -->
-            <img src="https://unsplash.com" alt="Bó hoa khô cổ điển">
+            <img src="02.jpg.JPG" alt="Hoa 02">
             <div class="flower-info">
                 <div class="flower-title">Bó hoa khô cổ điển<br><small style="color:#888;">復古乾燥花束</small></div>
                 <div class="flower-price">200元</div>
@@ -153,14 +148,33 @@
             </div>
         </div>
 
+        <!-- Hoa 3 -->
+        <div class="flower-item">
+            <img src="03.jpg.JPG" alt="Hoa 03">
+            <div class="flower-info">
+                <div class="flower-title">Sản phẩm hoa khô 03</div>
+                <div class="flower-price">300元</div>
+                <button class="order-btn" onclick="orderProduct('Sản phẩm 03')">Đặt hàng / 下單</button>
+            </div>
+        </div>
+
+        <!-- Hoa 4 -->
+        <div class="flower-item">
+            <img src="04.jpg.JPG" alt="Hoa 04">
+            <div class="flower-info">
+                <div class="flower-title">Sản phẩm hoa khô 04</div>
+                <div class="flower-price">350元</div>
+                <button class="order-btn" onclick="orderProduct('Sản phẩm 04')">Đặt hàng / 下單</button>
+            </div>
+        </div>
+
     </div>
 
-    <!-- ĐOẠN MÃ KÍCH HOẠT NÚT ĐĂNG NHẬP -->
+    <!-- ĐOẠN MÃ KÍCH HOẠT ĐĂNG NHẬP -->
     <script>
         const phoneInput = document.getElementById('phoneInput');
         const loginBtn = document.getElementById('loginBtn');
 
-        // Bắt sự kiện click để nút hoạt động được
         loginBtn.addEventListener('click', function() {
             const phoneValue = phoneInput.value.trim();
             if (phoneValue === "") {
