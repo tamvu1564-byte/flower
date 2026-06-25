@@ -13,50 +13,67 @@
             padding: 0;
         }
 
-        /* Thanh đầu trang màu kem chứa tên tiệm và nút đăng nhập */
+        /* Đầu trang màu kem chứa logo và cụm đăng nhập */
         .header-logo {
             background-color: #f7eedf;
-            padding: 15px 30px;
+            padding: 20px;
             width: 100%;
             box-sizing: border-box;
             display: flex;
-            justify-content: space-between; /* Đẩy chữ sang trái, đăng nhập sang phải */
+            flex-direction: column; /* Xếp logo ở trên, đăng nhập ở dưới cho rõ ràng */
             align-items: center;
+            gap: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .logo {
-            font-size: 24px;
+        .logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            max-width: 120px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .logo-text {
+            font-size: 26px;
             font-weight: bold;
             color: #555;
             margin: 0;
         }
 
-        /* Khối đăng nhập góc trên bên phải */
+        /* Khối đăng nhập căn giữa, giao diện to rõ ràng */
         .login-box {
-            text-align: right;
+            text-align: center;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .login-box input {
-            padding: 6px 10px;
+            padding: 8px 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
-            width: 160px;
-            margin-bottom: 4px;
+            width: 180px;
+            margin-right: 10px;
             box-sizing: border-box;
         }
 
         .login-box button {
-            background-color: #e8557f; /* Màu hồng của nút bấm */
+            background-color: #e8557f; /* Màu hồng nút Đăng nhập */
             color: white;
             border: none;
-            padding: 7px 15px;
+            padding: 8px 20px;
             border-radius: 4px;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
-            width: 160px;
             transition: background 0.2s;
         }
 
@@ -64,11 +81,11 @@
             background-color: #d03e66;
         }
 
-        /* KHU VỰC HIỂN THỊ DANH SÁCH HOA THEO HÀNG NGANG */
+        /* KHU VỰC HIỂN THỊ 7 BÓ HOA THEO HÀNG NGANG */
         .gallery {
             display: flex;
             flex-direction: row; /* Xếp theo hàng ngang */
-            flex-wrap: wrap;     /* Tự động xuống hàng nếu màn hình nhỏ */
+            flex-wrap: wrap;     /* Tự động xuống hàng nếu hết chỗ */
             justify-content: center; /* Căn giữa màn hình */
             gap: 25px;           /* Khoảng cách giữa các hộp hoa */
             padding: 40px 20px;
@@ -78,7 +95,7 @@
         .flower-item {
             background-color: #f7eedf;
             border-radius: 15px;
-            width: 300px; /* Định kích thước cố định vừa vặn khi nằm ngang */
+            width: 280px; /* Định kích thước cố định vừa vặn khi nằm ngang */
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding-bottom: 15px;
@@ -87,10 +104,10 @@
             justify-content: space-between;
         }
 
-        /* Hình ảnh hoa gốc của bạn */
+        /* Hình ảnh hoa thực tế từ danh sách file của bạn */
         .flower-item img {
             width: 100%;
-            height: 250px;
+            height: 230px;
             object-fit: cover; /* Tránh làm méo ảnh hoa */
         }
 
@@ -131,23 +148,27 @@
 </head>
 <body>
 
-    <!-- PHẦN ĐẦU TRANG -->
+    <!-- PHẦN ĐẦU TRANG (LOGO + ĐĂNG NHẬP) -->
     <div class="header-logo">
-        <div class="logo">乾燥花專賣店</div>
+        <div class="logo-box">
+            <!-- Hiển thị file Logo.jpg.PNG của bạn -->
+            <img src="Logo.jpg.PNG" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-text">乾燥花專賣店</div>
+        </div>
         
-        <!-- Khối Đăng Nhập Hoạt Động Được -->
+        <!-- Khối Đăng Nhập -->
         <div class="login-box">
-            <input type="tel" id="phoneInput" placeholder="輸入手機號碼" maxlength="11"><br>
+            <input type="tel" id="phoneInput" placeholder="輸入手機號碼" maxlength="11">
             <button id="loginBtn">登入會員</button>
         </div>
     </div>
 
-    <!-- DANH SÁCH SẢN PHẨM HÀNG NGANG -->
+    <!-- DANH SÁCH 7 SẢN PHẨM HÀNG NGANG -->
     <div class="gallery">
         
         <!-- Bó hoa số 1 -->
         <div class="flower-item">
-            <img src="01.jpg.JPG" alt="Bó hoa baby trắng">
+            <img src="01.jpg.JPG" alt="Bó hoa 01">
             <div class="flower-info">
                 <div class="flower-title">Bó hoa baby trắng<br><small style="color:#888; font-weight: normal;">滿天星花束</small></div>
                 <div class="flower-price">450元</div>
@@ -157,11 +178,61 @@
 
         <!-- Bó hoa số 2 -->
         <div class="flower-item">
-            <img src="02.jpg.JPG" alt="Bó hoa khô cổ điển">
+            <img src="02.jpg.JPG" alt="Bó hoa 02">
             <div class="flower-info">
                 <div class="flower-title">Bó hoa khô cổ điển<br><small style="color:#888; font-weight: normal;">復古乾燥花束</small></div>
                 <div class="flower-price">200元</div>
                 <button class="order-btn" onclick="orderProduct('Bó hoa khô cổ điển')">Đặt hàng / 下單</button>
+            </div>
+        </div>
+
+        <!-- Bó hoa số 3 -->
+        <div class="flower-item">
+            <img src="03.jpg.JPG" alt="Bó hoa 03">
+            <div class="flower-info">
+                <div class="flower-title">Bó hoa hướng dương hồng<br><small style="color:#888; font-weight: normal;">向日葵花束</small></div>
+                <div class="flower-price">350元</div>
+                <button class="order-btn" onclick="orderProduct('Bó hoa số 03')">Đặt hàng / 下單</button>
+            </div>
+        </div>
+
+        <!-- Bó hoa số 4 -->
+        <div class="flower-item">
+            <img src="04.jpg.JPG" alt="Bó hoa 04">
+            <div class="flower-info">
+                <div class="flower-title">Bó hoa hồng sáp cao cấp<br><small style="color:#888; font-weight: normal;">玫瑰花束</small></div>
+                <div class="flower-price">400元</div>
+                <button class="order-btn" onclick="orderProduct('Bó hoa số 04')">Đặt hàng / 下單</button>
+            </div>
+        </div>
+
+        <!-- Bó hoa số 5 -->
+        <div class="flower-item">
+            <img src="05.jpg.JPG" alt="Bó hoa 05">
+            <div class="flower-info">
+                <div class="flower-title">Bó hoa lavender khô<br><small style="color:#888; font-weight: normal;">薰衣草花束</small></div>
+                <div class="flower-price">280元</div>
+                <button class="order-btn" onclick="orderProduct('Bó hoa số 05')">Đặt hàng / 下單</button>
+            </div>
+        </div>
+
+        <!-- Bó hoa số 6 -->
+        <div class="flower-item">
+            <img src="06.jpg.JPG" alt="Bó hoa 06">
+            <div class="flower-info">
+                <div class="flower-title">Bó hoa cẩm tú cầu sấy<br><small style="color:#888; font-weight: normal;">繡球花束</small></div>
+                <div class="flower-price">490元</div>
+                <button class="order-btn" onclick="orderProduct('Bó hoa số 06')">Đặt hàng / 下單</button>
+            </div>
+        </div>
+
+        <!-- Bó hoa số 7 -->
+        <div class="flower-item">
+            <img src="07.jpg.JPG" alt="Bó hoa 07">
+            <div class="flower-info">
+                <div class="flower-title">Giỏ hoa khô trang trí<br><small style="color:#888; font-weight: normal;">裝飾花籃</small></div>
+                <div class="flower-price">520元</div>
+                <button class="order-btn" onclick="orderProduct('Bó hoa số 07')">Đặt hàng / 下單</button>
             </div>
         </div>
 
@@ -172,7 +243,7 @@
         const phoneInput = document.getElementById('phoneInput');
         const loginBtn = document.getElementById('loginBtn');
 
-        // Lập trình xử lý đăng nhập
+        // Xử lý đăng nhập thành viên
         loginBtn.addEventListener('click', function() {
             const phoneValue = phoneInput.value.trim();
             if (phoneValue === "") {
@@ -182,7 +253,7 @@
             }
         });
 
-        // Lập trình xử lý đặt hàng
+        // Xử lý đặt hàng nhanh
         function orderProduct(name) {
             alert("Bạn đã chọn đặt mua: " + name + ".\nHệ thống đang xử lý đơn hàng!");
         }
