@@ -8,12 +8,10 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #e8a7b5; /* Màu nền hồng tổng thể */
+            background-color: #e8a7b5;
             margin: 0;
             padding: 0;
         }
-
-        /* Dải nền màu kem sáng ở đầu trang */
         .header-container {
             background-color: #f7eedf;
             padding: 15px 20px;
@@ -22,16 +20,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
         }
-
-        /* Khối đăng nhập nằm ở góc trên bên phải */
         .login-box {
             align-self: flex-end;
             text-align: right;
             margin-bottom: 10px;
         }
-
         .login-box input {
             padding: 6px 10px;
             border: 1px solid #ccc;
@@ -39,11 +33,9 @@
             font-size: 14px;
             width: 160px;
             margin-bottom: 5px;
-            box-sizing: border-box;
         }
-
         .login-box button {
-            background-color: #e8557f; /* Màu hồng đậm của nút bấm */
+            background-color: #e8557f;
             color: white;
             border: none;
             padding: 8px 16px;
@@ -52,22 +44,13 @@
             font-size: 14px;
             cursor: pointer;
             width: 160px;
-            transition: background 0.2s;
         }
-
-        .login-box button:hover {
-            background-color: #d03e66;
-        }
-
-        /* Tiêu đề tiệm hoa chính giữa */
         .main-title {
             color: #555;
             margin: 10px 0;
             font-size: 24px;
             font-weight: bold;
         }
-
-        /* Khu vực trưng bày danh mục hoa */
         .gallery {
             display: flex;
             flex-direction: column;
@@ -75,8 +58,6 @@
             gap: 20px;
             padding: 20px;
         }
-
-        /* Khung bao bọc từng sản phẩm hoa */
         .flower-item {
             background-color: #f7eedf;
             border-radius: 15px;
@@ -86,7 +67,6 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding-bottom: 15px;
         }
-
         .flower-img-placeholder {
             width: 100%;
             height: 180px;
@@ -95,27 +75,21 @@
             align-items: center;
             justify-content: center;
             color: #777;
-            font-style: italic;
         }
-
         .flower-info {
             padding: 10px;
         }
-
         .flower-title {
             font-size: 16px;
             font-weight: bold;
             color: #333;
-            margin: 5px 0;
         }
-
         .flower-price {
             font-size: 16px;
             color: #e8557f;
             font-weight: bold;
             margin: 5px 0;
         }
-
         .order-btn {
             background-color: #e8557f;
             color: white;
@@ -129,22 +103,15 @@
 </head>
 <body>
 
-    <!-- ĐẦU TRANG -->
     <div class="header-container">
-        <!-- Khối Đăng Nhập -->
         <div class="login-box">
             <input type="tel" id="phoneInput" placeholder="輸入手機號碼" maxlength="11"><br>
             <button id="loginBtn">登入會員</button>
         </div>
-        
-        <!-- Tiêu đề -->
         <div class="main-title">Tiệm Hoa Khô</div>
     </div>
 
-    <!-- DANH SÁCH SẢN PHẨM -->
     <div class="gallery">
-        
-        <!-- Sản phẩm 1 -->
         <div class="flower-item">
             <div class="flower-img-placeholder">[Hình ảnh Bó hoa baby trắng]</div>
             <div class="flower-info">
@@ -154,7 +121,6 @@
             </div>
         </div>
 
-        <!-- Sản phẩm 2 -->
         <div class="flower-item">
             <div class="flower-img-placeholder">[Hình ảnh Bó hoa khô cổ điển]</div>
             <div class="flower-info">
@@ -163,30 +129,23 @@
                 <button class="order-btn" onclick="orderProduct('Bó hoa khô cổ điển')">Đặt hàng / 下單</button>
             </div>
         </div>
-
     </div>
 
-    <!-- ĐOẠN XỬ LÝ ĐĂNG NHẬP VÀ ĐẶT HÀNG -->
     <script>
         const phoneInput = document.getElementById('phoneInput');
         const loginBtn = document.getElementById('loginBtn');
 
-        // Hàm kiểm tra xử lý khi bấm nút "登入會員"
         loginBtn.addEventListener('click', function() {
             const phoneValue = phoneInput.value.trim();
-
             if (phoneValue === "") {
-                // Nếu chưa nhập số điện thoại, hiện thông báo nhắc nhở bằng cả 2 tiếng
                 alert("請輸入手機號碼！\n(Vui lòng nhập số điện thoại!)");
             } else {
-                // Nếu đã nhập, cho phép đăng nhập thành công
-                alert("登入成功！ Số điện thoại của bạn: " + phoneValue);
+                alert("登入成功！ Số điện thoại: " + phoneValue);
             }
         });
 
-        // Hàm xử lý nhanh khi bấm nút Đặt hàng
         function orderProduct(name) {
-            alert("Bạn đã chọn đặt mua: " + name + ". Hệ thống đang xử lý đơn hàng!");
+            alert("Bạn đã chọn đặt mua: " + name);
         }
     </script>
 
